@@ -22,7 +22,7 @@ pipeline {
 }
         stage('Test'){
             steps {
-                 withSonarQubeEnv( installationName: 'sonarqube' credentialsId: 'd4f7dc06-cad3-4f2d-9ada-888a9c9fef88') {              
+                 withSonarQubeEnv( installationName: 'sonarqube',credentialsId: 'd4f7dc06-cad3-4f2d-9ada-888a9c9fef88') {              
               sh '''cd backend
                     mvn sonar:sonar -Dsonar.projectKey=test-project'''
             }
