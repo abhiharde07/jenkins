@@ -23,11 +23,11 @@ pipeline {
         stage('Test'){
             steps {
               sh '''cd backend
-                   mvn sonar:sonar \\
-                  -Dsonar.projectKey=student \\
-                  -Dsonar.projectName=\'student\' \\
-                  -Dsonar.host.url=http://3.110.101.155:9000 \\
-                  -Dsonar.token=sqp_56cdc5e2293e3fe097f962272b6b5107eb9f9b50'''
+                   mvn sonar:sonar \
+                  -Dsonar.projectKey=test-project \
+                  -Dsonar.projectName='test-project' \
+                  -Dsonar.host.url=http://65.2.79.162:9000 \
+                  -Dsonar.token=sqp_440a1a8d19732021421e4120b72b7af9a929d41a
             }
         }
         stage('Deploy') {
