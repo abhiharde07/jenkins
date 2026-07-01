@@ -22,22 +22,22 @@ pipeline {
 }
         stage('Test'){
             steps {
-                 withSonarQubeEnv( installationName: 'sonarqube',credentialsId: 'd4f7dc06-cad3-4f2d-9ada-888a9c9fef88') {              
+                withSonarQubeEnv(installationName: 'sonarqube',credentialsId: 'new-secret') {             
               sh '''cd backend
-                    mvn sonar:sonar -Dsonar.projectKey=test-project'''
+                    mvn sonar:sonar -Dsonar.projectKey=student-01'''
             }
         }
    }
        stage ('Quality-Gate') {
             steps {
                 timeout(10) {
-                    waitForQualityGate abortPipeline: true, credentialsId: 'd4f7dc06-cad3-4f2d-9ada-888a9c9fef88'
+                    waitForQualityGate abortPipeline: true, credentialsId: 'new-secret'
                 }
         }
         }
-        stage('Deploy') {
+        stage('Delivery') {
             steps {
-                echo 'deploy success'
+                 sh 'aws s3 cp backend/target/student-registration-backend-0.0.1-SNAPSHOT.jar s3://demo-s3-bucket-782100/studentapp.jar'
             }
         }
     }
